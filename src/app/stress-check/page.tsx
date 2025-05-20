@@ -203,7 +203,9 @@ export default function StressCheckPage() {
         </p>
         <p className="text-sm text-muted-foreground mt-1">
           Checks remaining: <span className="font-semibold text-primary">{checksRemaining}</span>
-          {user && user.subscriptionTier === 'free' && typeof checksRemaining === 'number' && checksRemaining !== "Unlimited" && " this month"}
+          {user && user.subscriptionTier === 'free' && (
+            (typeof checksRemaining === 'number' ? " this month" : (checksRemaining !== "Unlimited" ? " this month" : null))
+          )}
         </p>
       </header>
 
