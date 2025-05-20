@@ -20,6 +20,7 @@ import type { ReactNode} from 'react';
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { auth, db } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
+import { FieldValue } from "firebase/firestore";
 
 export interface UserProfile {
   uid: string;
@@ -28,9 +29,9 @@ export interface UserProfile {
   photoURL?: string | null;
   phoneNumber?: string | null; // Added optional phone number
   monthlyStressChecksUsed: number;
-  lastResetDate: Date;
+  lastResetDate: Date | FieldValue;
   subscriptionTier: 'free' | 'premium';
-  createdAt: Date;
+  createdAt: Date | FieldValue;
   providerId?: string;
 }
 
@@ -121,7 +122,10 @@ async function manageUserInFirestore(firebaseUser: FirebaseUser, initialData?: {
   } else {
     console.log('[AuthContext] Existing Firestore profile found for UID:', firebaseUser.uid);
     const existingData = userSnap.data();
-    const updatesToFirestore: Partial<UserProfile & { lastResetDate: Timestamp | Date, createdAt: Timestamp | Date }> = {};
+    const updatesToFirestore: Partial<UserProfile & {
+  lastResetDate: Timestamp | Date | FieldValue;
+  createdAt: Timestamp | Date | FieldValue;
+}> = {};
 
     let currentDisplayName = existingData.displayName;
     if (firebaseUser.displayName && firebaseUser.displayName !== existingData.displayName) {
