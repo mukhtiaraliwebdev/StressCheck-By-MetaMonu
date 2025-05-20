@@ -18,7 +18,7 @@ export default function HomePage() {
         <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader>
             <Image 
-              src="https://lh3.googleusercontent.com/d/1w7oaEmUAVHmH7-EA6lM3-7WSlXip54bZ"
+              src="/images/voice-analysis.png"
               alt="Voice Analysis Illustration"
               width={600}
               height={400}
