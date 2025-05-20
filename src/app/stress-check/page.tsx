@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { VoiceRecorder } from "@/components/stress/VoiceRecorder";
 import { StressChart } from "@/components/stress/StressChart";
 import { performStressAnalysis } from "@/lib/actions/stressActions";
+import { MAX_AUTH_FREE_CHECKS } from "@/constants/stressCheck";
 import { 
   saveAnonymousStressCheckReport, 
   getAnonymousChecksUsed, 
@@ -20,7 +21,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
 
-export const MAX_AUTH_FREE_CHECKS = 30;
 
 const AlertTriangleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
