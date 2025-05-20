@@ -97,7 +97,7 @@ export default function StressCheckPage() {
             setIsPageLoading(false);
           });
       } else {
-        const limit = subscriptionTier === 'premium' ? Infinity : MAX_AUTH_FREE_CHECKS;
+        const limit = subscriptionTier === 'premium' ? Infinity : 30;
         const remaining = limit === Infinity ? "Unlimited" : Math.max(0, limit - monthlyStressChecksUsed);
         setChecksRemaining(remaining);
         setCanPerformCheck(limit === Infinity || monthlyStressChecksUsed < limit);
