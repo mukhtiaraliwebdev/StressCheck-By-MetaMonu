@@ -1,0 +1,50 @@
+
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css';
+import { AppSidebar } from '@/components/AppSidebar';
+import { UserProfileDropdown } from '@/components/UserProfileDropdown'; // Import the new component
+import { Toaster } from '@/components/ui/toaster';
+import { AuthProvider } from '@/contexts/AuthContext';
+
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});
+
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
+
+export const metadata: Metadata = {
+  title: 'StressCall',
+  description: 'Monitor and analyze stress levels through voice.',
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <AuthProvider>
+          <div className="flex min-h-screen">
+            <AppSidebar />
+            <div className="flex-1 flex flex-col">
+              <header className="sticky top-0 z-10 flex h-[57px] items-center justify-end gap-1 border-b bg-background px-4">
+                <UserProfileDropdown />
+              </header>
+              <main className="flex-1 p-4 md:p-8 overflow-auto">
+                {children}
+              </main>
+            </div>
+          </div>
+          <Toaster />
+        </AuthProvider>
+      </body>
+    </html>
+  );
+}
