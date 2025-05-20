@@ -18,7 +18,7 @@ export default function HomePage() {
         <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
           <CardHeader>
             <Image 
-              src="https://placehold.co/600x400.png"
+              src="https://lh3.googleusercontent.com/d/1w7oaEmUAVHmH7-EA6lM3-7WSlXip54bZ"
               alt="Voice Analysis Illustration"
               width={600}
               height={400}
@@ -35,19 +35,17 @@ export default function HomePage() {
               <Button asChild size="lg">
                 <Link href="/stress-check">Check Stress Now</Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/dialer">Open Dialer</Link>
-              </Button>
             </div>
           </CardContent>
         </Card>
         
         <div className="space-y-6">
-          <FeatureCard
-            icon={<Activity className="w-8 h-8 text-accent" />}
-            title="Live Call Insights (Simulated)"
-            description="Experience a simulation of real-time stress monitoring during calls made through our integrated dialer."
-          />
+        <FeatureCard
+  icon={<Activity className="w-8 h-8 text-accent" />}
+  title="Voice-Based Stress Detection"
+  description="Analyze stress levels through vocal cues in simulated call scenarios, showcasing how real-time detection works."
+/>
+
           <FeatureCard
             icon={<Zap className="w-8 h-8 text-accent" />}
             title="On-Demand Analysis"
