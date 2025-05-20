@@ -11,6 +11,7 @@ import { Loader2, UserCircle, Mail, Edit3, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Timestamp as FirestoreTimestamp } from "firebase/firestore";
 
 export default function ProfilePage() {
   const { user, loading: authLoading, updateUserDisplayName, updateUserPhoneNumber, refreshUser } = useAuth();
@@ -176,7 +177,15 @@ export default function ProfilePage() {
 
         </CardContent>
         <CardFooter className="flex justify-center">
-            <p className="text-xs text-muted-foreground">Joined on: {new Date(user.createdAt).toLocaleDateString()}</p>
+            <p className="text-xs text-muted-foreground">
+  Joined on:{' '}
+  {user.createdAt instanceof Date
+    ? user.createdAt.toLocaleDateString()
+    : user.createdAt instanceof FirestoreTimestamp
+    ? user.createdAt.toDate().toLocaleDateString()
+    : 'N/A'}
+</p>
+
         </CardFooter>
       </Card>
     </div>
